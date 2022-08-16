@@ -9,6 +9,7 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/[Pp]ackages/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -21,6 +22,7 @@
 
 # Visual Studio cache directory
 .vs/
+packages.config
 
 # Gradle cache directory
 .gradle/
@@ -42,6 +44,9 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+*/[Ll]ogs/*
+*/[Ll]ogs/*.txt.meta
+*/[Ll]ogs.meta
 
 # Unity3D generated meta files
 *.pidb.meta
