@@ -8,12 +8,12 @@ public class ReEnableTimeScript : MonoBehaviour
     private void OnEnable()
     {
         _stopWatch = GetComponent<StopWatch>();
-        Restart.e_ReEnableTime += ReEnable;
+        Restart.OnReEnableTime += ReEnable;
     }
 
     private void OnDisable()
     {
-        Restart.e_ReEnableTime -= ReEnable;
+        Restart.OnReEnableTime -= ReEnable;
     }
 
     private void ReEnable()

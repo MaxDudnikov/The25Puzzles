@@ -5,14 +5,14 @@ public class CupAnimate : MonoBehaviour
 {
     private void OnEnable()
     {
-        BloksController.e_Win += EndGame;
-        Restart.e_ResetStats += NewGame;
+        Game.OnWin += EndGame;
+        Restart.OnResetStats += NewGame;
     }
 
     private void OnDisable()
     {
-        BloksController.e_Win -= EndGame;
-        Restart.e_ResetStats -= NewGame;
+        Game.OnWin -= EndGame;
+        Restart.OnResetStats -= NewGame;
     }
 
     private void NewGame()

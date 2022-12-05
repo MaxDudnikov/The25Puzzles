@@ -15,15 +15,14 @@ public class StopWatch : MonoBehaviour
     {
         _stopWatch = GetComponent<StopWatch>();
         _time = GetComponent<TextMeshProUGUI>();
-
-        Restart.e_ResetStats += OnResetStats;
-        BloksController.e_Win += EndGame;
+        Game.OnWin += EndGame;
+        Restart.OnResetStats += OnResetStats;
     }
 
     private void OnDestroy()
     {
-        Restart.e_ResetStats -= OnResetStats;
-        BloksController.e_Win -= EndGame;
+        Game.OnWin -= EndGame;
+        Restart.OnResetStats -= OnResetStats;
     }
 
     private void EndGame()
