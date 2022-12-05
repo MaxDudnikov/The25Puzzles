@@ -16,12 +16,12 @@ public class SaveData : MonoBehaviour
 
     private void OnEnable()
     {
-        BloksController.e_Win += WriteResult;
+        Game.OnWin += WriteResult;
     }
 
     private void OnDisable()
     {
-        BloksController.e_Win -= WriteResult;
+        Game.OnWin -= WriteResult;
     }
 
     private void WriteResult()
