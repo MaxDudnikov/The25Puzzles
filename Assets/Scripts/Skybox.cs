@@ -10,6 +10,9 @@ public class Skybox : MonoBehaviour
 
     private void Start()
     {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 30;
+
         StartCoroutine(Get_Time());
     }
 

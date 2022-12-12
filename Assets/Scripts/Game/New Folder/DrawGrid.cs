@@ -22,8 +22,8 @@ public class DrawGrid : MonoBehaviour
 
     private void Awake()
     {
-        Draw();
         GetMaterial();
+        Draw();
     }
     private void GetMaterial()
     {
@@ -66,10 +66,7 @@ public class DrawGrid : MonoBehaviour
             var pos = leftupvert + new Vector3(edge / 2, 0, 0) - new Vector3(0, edge / 2, 0);
             pos = pos + new Vector3(edge, 0, 0) * column - new Vector3(0, edge, 0) * row;
 
-            if (i == _grid_count * _grid_count - 1)
-                Add_Dot(i, pos);
-            else
-                Add_Dot(i, pos);
+            Add_Dot(i, pos);
 
             column++;
             if (column != 0 && column % _grid_count == 0)
@@ -96,16 +93,6 @@ public class DrawGrid : MonoBehaviour
                 -b.size.y,
                 b.size.z) * 0.5f);
 
-            //var dot = transform.TransformPoint(obj.GetComponent<MeshFilter>().sharedMesh.vertices[7]);
-
-            //dot = new Vector3(dot.x * obj.transform.localScale.x,
-            //    dot.y * obj.transform.localScale.y,
-            //    dot.z * obj.transform.localScale.z);
-            //dot = new Vector3(obj.transform.position.x + dot.x,
-            //    obj.transform.position.y + dot.y,
-            //    obj.transform.position.z + dot.z);
-            //dot = Quaternion.Euler(obj.transform.eulerAngles) * dot;
-
             obj.transform.position = leftupvert - (dot - obj.transform.position) + new Vector3(edge, 0,0) * column - new Vector3(0, edge, 0) * row;
 
             _objects.Add(obj);
@@ -122,7 +109,7 @@ public class DrawGrid : MonoBehaviour
         var sum = 0;
         for (int i = 0; i < _objects.Count; i++)
         {
-            sum += MathExtension.GetSumNumber(_objects, _objects[i]);
+            sum += MathExtension.GetSumNumber(_objects, _objects[i], i);
         }
         if (!MathExtension.CorrectMagicBox(sum, _grid_count))
         {
@@ -138,6 +125,9 @@ public class DrawGrid : MonoBehaviour
 
     private int GetGridCount()
     {
+#if UNITY_EDITOR
+        return _grid_count;
+#endif
         if (PlayerPrefs.HasKey("Grid_count"))
             return PlayerPrefs.GetInt("Grid_count");
         else
@@ -153,6 +143,7 @@ public class DrawGrid : MonoBehaviour
         for (int i = 0; i < _objects.Count; i++)
         {
             var _num = rnd.Next(0, ints.Count);
+            _objects[i].name = $"Cube {ints[_num]}";
             _objects[i].GetComponent<Cube>()._Id = ints[_num] - 1;
             _objects[i].GetComponent<Cube>()._Number = ints[_num];
             _objects[i].GetComponent<Cube>()._Scale = (float)(GetEdge() / _grid_count * Math.Sqrt(2) / 2);

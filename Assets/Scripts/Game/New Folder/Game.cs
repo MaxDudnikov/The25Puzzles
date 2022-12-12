@@ -13,21 +13,21 @@ public class Game : MonoBehaviour
 
     private int _piecesLeft;
 
-    private void Start()
+    private void Awake()
     {
         _piecesLeft = Plane._grid_count * Plane._grid_count - 1;
     }
     private void OnEnable()
     {
         Restart.OnResetStats += OnResetStats;
-        OnMoveCubes.OnStart += Check_Start;
-        OnMoveCubes.OnGame += Check_Game;
+        ControlCubes.OnStart += Check_Start;
+        ControlCubes.OnGame += Check_Game;
     }
     private void OnDisable()
     {
         Restart.OnResetStats -= OnResetStats;
-        OnMoveCubes.OnStart -= Check_Start;
-        OnMoveCubes.OnGame -= Check_Game;
+        ControlCubes.OnStart -= Check_Start;
+        ControlCubes.OnGame -= Check_Game;
     }
 
     private void OnResetStats()
