@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(DrawGrid))]
 public class CustomInspector : Editor
 {
@@ -13,3 +14,4 @@ public class CustomInspector : Editor
             drawGrid.Draw();
     }
 }
+#endif

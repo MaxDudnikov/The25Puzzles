@@ -4,13 +4,13 @@ using UnityEngine;
 
 public static class MathExtension
 {
-    public static int GetSumNumber(List<GameObject> objects, GameObject cur_cube)
+    public static int GetSumNumber(List<GameObject> objects, GameObject cur_cube, int idx)
     {
         var _cube = cur_cube.GetComponent<Cube>();
 
         int result = 0;
 
-        for (int i = _cube._Id; i < objects.Count; i++)
+        for (int i = idx; i < objects.Count; i++)
         {
             if (objects[i].GetComponent<Cube>()._Number < _cube._Number)
                 result++;
